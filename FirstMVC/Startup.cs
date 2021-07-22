@@ -16,18 +16,18 @@ namespace FirstMVC
 {
 	public class Startup
 	{
+		public IConfiguration Configuration { get; }
+	
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
 		}
 
-		public IConfiguration Configuration { get; }
-
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
 			string connection = Configuration.GetConnectionString("DefaultConnection");
-			services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
+			services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
 
 			// регистрация сервиса репозитория для взаимодействия с базой данных
 			services.AddSingleton<IBlogRepository, BlogRepository>();
@@ -51,9 +51,9 @@ namespace FirstMVC
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
-			app.UseRouting();
-
 			app.UseMiddleware<LoggingMiddleware>();
+
+			app.UseRouting();
 
 			app.UseAuthorization();
 

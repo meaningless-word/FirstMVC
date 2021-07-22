@@ -23,8 +23,41 @@ namespace FirstMVC.Controllers
 
 		public IActionResult Index()
 		{
+			//// Добавим создание нового пользователя
+			//var newUser = new User()
+			//{
+			//	Id = Guid.NewGuid(),
+			//	FirstName = "Andrey",
+			//	LastName = "Petrov",
+			//	JoinDate = DateTime.Now
+			//};
+
+			//// Добавим в базу
+			//await _repo.AddUser(newUser);
+
+			//// Выведем результат
+			//Console.WriteLine($"User with id {newUser.Id}, named {newUser.FirstName} was successfully added on {newUser.JoinDate}");
+
+
 			return View();
 		}
+
+		
+		// У нас будет отдельная страничка, где посетители смогут просматривать всех авторов (то есть всех пользователей), добавим метод для этого:
+		//public async Task<IActionResult> Authors()
+		//{
+		//	var authors = await _repo.GetUsers();
+			
+		//	// перенесено из контроллера в представление
+		//	/*
+		//	Console.WriteLine("See all blog authors:");
+		//	foreach (var author in authors)
+		//		Console.WriteLine($"Author with id {author.Id}, named {author.FirstName}, joined {author.JoinDate}");
+		//	//Console.WriteLine($"Author name {author.FirstName}, joined {author.JoinDate}");
+		//	*/
+			
+		//	return View(authors);
+		//}
 
 		public IActionResult Privacy()
 		{
