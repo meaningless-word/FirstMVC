@@ -1,4 +1,5 @@
 ﻿using FirstMVC.Models;
+using FirstMVC.Models.Db;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,10 +13,12 @@ namespace FirstMVC.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
+		private readonly IBlogRepository _repo;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, IBlogRepository repo)
 		{
 			_logger = logger;
+			_repo = repo;
 		}
 
 		public IActionResult Index()
