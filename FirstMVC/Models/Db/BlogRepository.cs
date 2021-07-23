@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,10 +30,27 @@ namespace FirstMVC.Models.Db
 			await _context.SaveChangesAsync();
 		}
 
+		public async Task AddRequest(Request request)
+		{
+			// Добавление запроса в Log
+			var entry = _context.Entry(request);
+			if (entry.State == EntityState.Detached)
+				await _context.Requests.AddAsync(request);
+
+			// Сохранение изенений
+			await _context.SaveChangesAsync();
+		}
+
 		public async Task<User[]> GetUsers()
 		{
 			// Получим всех активных пользователей
 			return await _context.Users.ToArrayAsync();
+		}
+
+		public async Task<Request[]> GetRequests()
+		{
+			// Получим все записи Log`а
+			return await _context.Requests.OrderByDescending(x => x.Date).ToArrayAsync();
 		}
 	}
 }

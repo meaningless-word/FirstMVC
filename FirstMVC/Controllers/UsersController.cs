@@ -16,7 +16,7 @@ namespace FirstMVC.Controllers
 			_repo = repo;
 		}
 
-				public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index()
 		{
 			var authors = await _repo.GetUsers();
 			return View(authors);
