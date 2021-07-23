@@ -15,10 +15,15 @@
 
     th,
     td {
-        width: 150px;
+        width: 250px;
         text-align: center;
         border: 1px solid black;
         padding: 5px;
+    }
+
+    td.url {
+        width: 500px;
+        text-align: left;
     }
 
     h2 {
@@ -40,7 +45,7 @@
             <tr>
                 <td>@request.Id</td>
                 <td>@request.Date</td>
-                <td>@request.Url</td>
+                <td class="url">@request.Url</td>
             </tr>
         }
     </table>
